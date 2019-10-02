@@ -5,12 +5,13 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
 
+    Animator Animator;
     public bool Grounded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Animator = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class GroundCheck : MonoBehaviour
         if(col.CompareTag("Ground"))
         {
             Grounded = true;
+            Animator.SetBool("Jump",false);
         }
     }
 
@@ -35,6 +37,7 @@ public class GroundCheck : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             Grounded = false;
+            Animator.SetBool("Jump", true);
         }
     }
 
@@ -44,5 +47,6 @@ public class GroundCheck : MonoBehaviour
         OnTriggerEnter2D(col);
     }
     
+
 
 }
